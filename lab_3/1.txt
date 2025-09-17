@@ -1,0 +1,99 @@
+import math
+
+i=int(input("полином или бернули"))
+if i == 1 :
+    def calculate_probability(n, k, p):
+        q = 1 - p
+        probability = math.comb(n, k) * (p ** k) * (q ** (n - k))
+        return probability
+
+    def validate_input(value):
+        try:
+            value = float(value)
+            if value >= 0 and value <= 1:
+                return True
+            else:
+                return False
+        except ValueError:
+            return False
+
+    def main():
+        print("Программа для вычисления вероятностей событий с использованием формулы Бернулли")
+        p = input("Введите значение p (вероятность успеха): ")
+        n = input("Введите значение n (количество испытаний): ")
+        m = input("Введите значение m: ")
+        m1 = input("Введите значение m1: ")
+        m2 = input("Введите значение m2: ")
+
+
+
+        p = float(p)
+        n = int(n)
+        m = int(m)
+        m1 = int(m1)
+        m2 = int(m2)
+
+        print("Выберите событие:")
+        print("1. Pn(k=m)")
+        print("2. Pn(m<k)")
+        print("3. Pn(K>=m)")
+        print("4. Pn(m1<=k<=m2)")
+
+        event = input("Введите номер события: ")
+
+        if event == "1":
+            probability = calculate_probability(n, m, p)
+            print(f"Расчетная формула для Pn(k=m): Pn(k=m) = C(n, m) * p^m * (1-p)^(n-m)")
+            print(f"Вероятность Pn(k=m) = {probability}")
+        elif event == "2":
+            probability = 0
+            for k in range(m):
+                probability += calculate_probability(n, k, p)
+            print(f"Расчетная формула для Pn(m<k): Pn(m<k) = Σ[C(n, k) * p^k * (1-p)^(n-k)] (от k=0 до m-1)")
+            print(f"Вероятность Pn(m<k) = {probability}")
+        elif event == "3":
+            probability = 0
+            for k in range(m, n+1):
+                probability += calculate_probability(n, k, p)
+            print(f"Расчетная формула для Pn(K>=m): Pn(K>=m) = Σ[C(n, k) * p^k * (1-p)^(n-k)] (от k=m до n)")
+            print(f"Вероятность Pn(K>=m) = {probability}")
+        elif event == "4":
+            probability = 0
+            for k in range(m1, m2+1):
+                probability += calculate_probability(n, k, p)
+            print(f"Расчетная формула для Pn(m1<=k<=m2): Pn(m1<=k<=m2) = Σ[C(n, k) * p^k * (1-p)^(n-k)] (от k=m1 до m2)")
+            print(f"Вероятность Pn(m1<=k<=m2) = {probability}")
+        else:
+            print("Некорректный номер события.")
+
+    if __name__ == "__main__":
+        main()
+elif i==2:
+    def calculate_polynomial_probability(n, k, m, p):
+        # Проверка правильности ввода
+        if sum(m) != n:
+            print("Ошибка: сумма значений m1, m2, ..., mk должна быть равна n")
+            return
+
+        # Вычисление полиномиальной вероятности
+        result = math.factorial(n)
+        for i in range(k):
+            result /= math.factorial(m[i])
+            result *= p[i] ** m[i]
+
+        return result
+
+
+    # Ввод параметров
+    n = int(input("Введите общее количество событий (n): "))
+    k = int(input("Введите количество различных событий (k): "))
+    m = []
+    p = []
+    for i in range(k):
+        m.append(int(input(f"Введите количество исходов для события {i + 1}: ")))
+        p.append(float(input(f"Введите вероятность для события {i + 1}: ")))
+
+    # Вычисление и вывод ответа
+    result = calculate_polynomial_probability(n, k, m, p)
+    if result is not None:
+        print("Результат вычислений:", result)

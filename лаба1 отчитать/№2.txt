@@ -1,0 +1,107 @@
+# алгоритм факториала
+import math
+
+
+def fact(n):
+    result = 1
+    while n > 1:
+        result *= n
+        n -= 1
+    return result
+
+# 1.перестановка +
+def f1(n, k):
+    result = fact(n)
+    return result
+
+# 2.Сочетание +
+def f2(n, k):
+    result = int(fact(n) // (fact(k) * fact(n - k)))
+    return result
+
+# 3.Размещение +
+def f3(n, k):
+    result = int(fact(n) // (fact(n - k)))
+    return result
+
+# 4.Сочетание с повторениями +
+def f4(n, k):
+    result = f2(n + k - 1, k)
+    return result
+
+# 5.Перестановка с повторением +
+def f5(n, k, x):
+    result = int(fact(n))
+    for i in range(len(x)):
+        result //= fact(x[i])
+    return result
+
+# 6.Размещение с повторением
+def f6 (n, k):
+    result = int(n ** k)
+    return result
+
+# функция для номера 2
+def func_2(n, m):
+    d = math.comb(m, n)
+    res = 1/d
+    return d
+
+# выполнить номера 1, 2 и 3
+
+print('Введите номер задания: ')
+num = int(input())
+
+if (num == 1):
+    #1
+    print('Задание:')
+    print('В партии, состоящей из k изделий, имеется l дефектных. Из партии выбирается для контроля r изделий. Найти вероятность того, что из них S изделий будут дефектными')
+
+    print('введите K')
+    k = int(input())
+
+    print('введите l')
+    l = int(input())
+
+    print('введите r')
+    r = int(input())
+
+    print('введите s')
+    s = int(input())
+
+    n = f2(k, r)
+    m = f2(l, s) * f2(k-l, r-s)
+    p = m / n
+    print('Вероятность события:')
+    print(p)
+elif (num == 2): #?????
+    print('Задание: ')
+    print('Имеется m операторов и n перенумерованных приборов, которые они могут обслуживать. Каждый оператор выбирает случайным образом и с одинаковой вероятностью любой прибор, но с условием, что ни один прибор не может обслуживаться больше, чем одним оператором. Найти вероятность того, что будут выбраны для обслуживания приборы с номерами 1, 2, …, m.')
+
+    print('введите m')
+    m = int(input())
+
+    print('введите n')
+    n = int(input())
+
+    if (m < n):
+        print('Неверный ввод')
+    else:
+        p = 1/fact(m-n)
+        print('Вероятность события:')
+        print(p)
+elif (num == 3):
+    print('Задание: ')
+    print('В отделение связи поступило m телеграмм, которые случайным образом распределяются по n каналам связи (n>m). Найти вероятность события А – на каждый канал придется не больше одной телеграммы.')
+
+    print('введите m')
+    m = int(input())
+
+    print('введите n')
+    n = int(input())
+
+    p = fact(n-1) / fact(n - m) / f6(n, m-1)
+    print('Вероятность равна: ')
+    print(p)
+else:
+    print('Неверный ввод')

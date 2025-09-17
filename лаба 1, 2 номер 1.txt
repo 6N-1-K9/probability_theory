@@ -1,0 +1,60 @@
+# алгоритм факториала
+def fact(n):
+    result = 1
+    while n > 1:
+        result *= n
+        n -= 1
+    return result
+
+# 1.перестановка +
+def f1(n, k):
+    result = fact(n)
+    return result
+
+# 2.Сочетание +
+def f2(n, k):
+    result = int(fact(n) // (fact(k) * fact(n - k)))
+    return result
+
+# 3.Размещение +
+def f3(n, k):
+    result = int(fact(n) // (fact(n - k)))
+    return result
+
+# 4.Сочетание с повторениями +
+def f4(n, k):
+    result = f2(n + k - 1, k)
+    return result
+
+# 5.Перестановка с повторением +
+def f5(n, k, x):
+    result = int(fact(n))
+    for i in range(len(x)):
+        result //= fact(x[i])
+    return result
+
+# 6.Размещение с повторением
+def f6 (n, k):
+    result = int(n ** k)
+    return result
+
+print('Задание')
+print('В партии, состоящей из k изделий, имеется l дефектных. Из партии выбирается для контроля r изделий. Найти вероятность того, что из них S изделий будут дефектными')
+
+print('введите K')
+k = int(input())
+
+print('введите l')
+l = int(input())
+
+print('введите r')
+r = int(input())
+
+print('введите s')
+s = int(input())
+
+n = f2(k, r)
+m = f2(l, s) * f2(k-l, r-s)
+p = m / n
+print('Вероятность события:')
+print(p)

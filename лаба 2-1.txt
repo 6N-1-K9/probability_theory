@@ -1,0 +1,61 @@
+
+num = int(input("Введите номер задания(1,2,3): "))
+
+if num == 1:
+    q = list(map(float, input("Введите шанс отказа каждого из 6 отдельных элементов(через пробел): ").split(maxsplit=5)))
+    for i in range(len(q), 6):
+        q.append(0)
+    p = 6 * [0.0]
+    check = True
+    for i in range(len(q)):
+        if q[i] < 0 or q[i] > 1:
+            check = False
+            break
+        p[i] = 1 - q[i]
+    if check:
+        print("Ответ:",
+             1 - ((1-q[0])*((1-q[1])*(1-(1-q[4])*(1-q[5]))*((1-q[2])+(1-q[3])-(1-q[2])*(1-q[3]))+(1-q[4])*(1-q[5]))))
+    else:
+        print("Invalid value!")
+
+elif num == 2:
+    q = list(map(float, input("Введите шанс отказа каждого из 5 отдельных элементов(через пробел): ").split(maxsplit=5)))
+    for i in range(len(q), 5):
+        q.append(0)
+    check = True
+    for i in range(len(q)):
+        if q[i] < 0 or q[i] > 1:
+            check = False
+            break
+    if check:
+        print("Ответ:",
+              ( (1-q[1-1]) * (1-q[5-1]) * ((1-q[2-1]) + q[2-1] * (1-q[3-1]) * (1-q[4-1])) ))
+    else:
+        print("Invalid value!")
+elif num == 3:
+    q = list(map(float, input("Введите вероятность того, что станок потребует наладки, для каждого из 4 станков(через пробел): ").split(maxsplit=3)))
+    for i in range(len(q), 4):
+        q.append(0)
+    p = 4*[0.0]
+    check = True
+    for i in range(len(q)):
+        if q[i] < 0 or q[i] > 1:
+            check = False
+            break
+        p[i] = 1 - q[i]
+    if check:
+        print("Ответ: "
+        " a) ",q[1-1]*p[2-1]*p[3-1]*p[4-1] + p[1-1]*q[2-1]*p[3-1]*p[4-1] +
+              p[1-1]*p[2-1]*q[3-1]*p[4-1] + p[1-1]*p[2-1]*p[3-1]*q[4-1],"\n",
+
+        "\t\tб) ",p[1-1]*p[2-1]*q[3-1]*p[4-1], "\n",
+
+        "\t\tв) ",q[1-1]*q[2-1]*p[3-1]*p[4-1] + q[1-1]*p[2-1]*q[3-1]*p[4-1] +
+              q[1-1]*p[2-1]*p[3-1]*q[4-1] + p[1-1]*q[2-1]*q[3-1]*p[4-1] +
+              p[1-1]*q[2-1]*p[3-1]*q[4-1] + p[1-1]*p[2-1]*q[3-1]*q[4-1],"\n",
+
+        "\t\tг) ",1 - p[1-1]*p[2-1]*p[3-1]*p[4-1])
+    else:
+        print("Invalid value!")
+else:
+    print("- Саня такое не пишет!\n- Но я пишу!")

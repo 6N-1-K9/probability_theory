@@ -1,0 +1,41 @@
+# This is a sample Python script.
+def fact(n):
+    result = 1
+    while n > 1:
+        result *= n
+        n -= 1
+    return result
+#(separating comment)
+
+def A(n, k):
+    result = int(fact(n) // fact(n - k))
+    return result
+
+def C(n, k):
+    result = int(fact(n) // (fact(k)*fact(n - k)))
+    return result
+
+print('1.Сочетание без повторения\n'
+      '2.Размещение с повторением\n'
+      '3.Перестановка без повторени2я\n')
+
+x1 = int(input('Введите число для выбора: '))
+
+if x1 != 3:
+    K = int(input('Введите число K: '))
+else: K = 1
+N = int(input('Введите число n: '))
+
+if x1 == 1:
+    while N < K:
+        K = int(input('Введите число K: '))
+        N = int(input('Введите число n: '))
+
+    print('C  = n!/(k!(n-k)!)')
+    print(C(N, K))
+elif x1 == 2:
+    print('A  = n^k')
+    print(A(N, K))
+elif x1 == 3:
+    print('P  = n!')
+    print(fact(N))

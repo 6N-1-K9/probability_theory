@@ -1,0 +1,83 @@
+# алгоритм факториала
+def fact(n):
+    result = 1
+    while n > 1:
+        result *= n
+        n -= 1
+    return result
+
+# 1.перестановка +
+def f1(n, k):
+    result = fact(n)
+    return result
+
+# 2.Сочетание +
+def f2(n, k):
+    result = int(fact(n) // (fact(k) * fact(n - k)))
+    return result
+
+# 3.Размещение +
+def f3(n, k):
+    result = int(fact(n) // (fact(n - k)))
+    return result
+
+# 4.Сочетание с повторениями +
+def f4(n, k):
+    result = f2(n + k - 1, k)
+    return result
+
+# 5.Перестановка с повторением +
+def f5(n, k, x):
+    result = int(fact(n))
+    for i in range(len(x)):
+        result //= fact(x[i])
+    return result
+
+# 6.Размещение с повторением
+def f6 (n, k):
+    result = int(n ** k)
+    return result
+
+print('1.Перестановка\n'
+      '2.Сочетание\n'
+      '3.Размещение\n'
+      '4.Сочетание с повторением\n'
+      '5.Перестановка с повторением\n'
+      '6.Размещение с повторением\n')
+
+# Ввод значений
+a = int(input('Введите число для выбора: '))
+n = int(input('Введите n: '))
+k = int(input('Введите k: '))
+
+if a == 1: # перестановка
+    print('P = n!')
+    print(f1(n, k))
+
+elif a == 2 and n > k: # Сочетание
+    print('C = fact(n) // (fact(k)*fact(n - k))')
+    print(f2(n, k))
+
+elif a == 3: #Размещение
+    print('A = fact(n) // (fact(n - k))')
+    print(f3(n, k))
+
+elif a == 4:
+    print('C = fact(n+k-1) // (fact(k) * fact(n + k - 1 - k))')
+    print(f4(n, k))
+
+elif a == 5:
+    x = [0] * k
+    print('P = fact(n)/(fact(x1)*fact(x2)*..*fact(xk))')
+    print('Введите категории, КАЖДОЕ введенное число подтверждайте через Enter: ')
+    for i in range(k):
+        x[i] = int(input())
+    if n >= k and n > 0 and k > 0:
+        print(f5(n, k, x))
+
+elif a == 6:
+    print('A = n^k')
+    print(f6(n, k))
+
+else:
+    print('Некорректные данные')

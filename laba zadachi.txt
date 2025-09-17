@@ -1,0 +1,164 @@
+1.1)
+В классе 20 учащихся. Сколькими способами можно выделить двух человек для дежурства? Так как каждая группа учащихся в 2 человека должна отличаться хотя бы одним из учащихся.
+1
+n = 20
+k = 2
+Ответ: 190
+
+1.2)
+Сколькими способами можно распределить три путевки в один санаторий между пятью желающими?
+1
+n = 5
+k = 3
+Ответ: 10
+
+2.1)
+Сколькими способами можно 5 шариков разбросать по 8 лункам, если каждая лунка может вместить все 5 шариков?
+2
+n = 8
+k = 5
+Ответ: 390625 
+
+2.2)
+Сколькими способами девочка Яна может разложить 12 кукол по трём ящикам, если каждый ящик может вместить все куклы?
+2
+n = 12
+m = 3
+Ответ: 531441
+
+3.1)
+Сколькими способами может разместиться семья из 10 человек за обеденным столом?
+3
+n = 10
+3628800
+
+3.2)
+В соревнованиях участвуют семь команд. Сколько вариантов распределения мест между ними возможно?
+3
+n = 7
+
+# This is a sample Python script.
+
+
+# алгоритм факториала
+def fact(n):
+    result = 1
+    while n > 1:
+        result *= n
+        n -= 1
+    return result
+#(separating comment)
+
+# перестановка
+def P(n, k):
+    result = fact(n)
+    return result
+
+#Сочетание
+def С(n, k):
+    result = int(fact(n) // (fact(k)*fact(n - k)))
+    return result
+
+#Размещение
+def C_1(n, k):
+    result = int(fact(n) // (fact(n - k)))
+    return result
+
+#Сочетание с повторениями
+def C_2 (n, k):
+    result = int(fact(n+k-1) // (fact(k) * fact(n + k - 1 - k))) # работает ли?
+    return result
+print('1.Перестановка\n'
+      '2.Сочетание\n'
+      '3.Размещение\n'
+      '4.Сочетание с повторением\n'
+      '5.Перестановка с повторением\n')
+
+#Перестановка с повторением
+
+a = int(input('Введите число для выбора: '))
+
+if x1 != 3:
+    K = int(input('Введите число K: '))
+else: K = 1
+N = int(input('Введите число n: '))
+
+if x1 == 1:
+    while N < K:
+        K = int(input('Введите число K: '))
+        N = int(input('Введите число n: '))
+
+    print('C  = n!/(k!(n-k)!)')
+    print(A(N, K))
+elif x1 == 2:
+    print('A  = n^k')
+    print(C(N, K))
+elif x1 == 3:
+    print('P  = n!')
+    print(fact(N))
+
+
+ПОЧТИ ФИНАЛ
+# алгоритм факториала
+def fact(n):
+    result = 1
+    while n > 1:
+        result *= n
+        n -= 1
+    return result
+#(separating comment)
+
+# перестановка
+def P(n, k):
+    result = fact(n)
+    return result
+
+#Сочетание
+def K(n, k):
+    result = int(fact(n) // (fact(k)*fact(n - k)))
+    return result
+
+#Размещение
+def C_1(n, k):
+    result = int(fact(n) // (fact(n - k)))
+    return result
+
+#Сочетание с повторениями
+def C_2 (n, k):
+    result = int(fact(n+k-1) // (fact(k) * fact(n + k - 1 - k))) # работает ли?
+    return result
+print('1.Перестановка\n'
+      '2.Сочетание\n'
+      '3.Размещение\n'
+      '4.Сочетание с повторением\n'
+      '5.Перестановка с повторением\n')
+
+#Перестановка с повторением
+
+a = int(input('Введите число для выбора: '))
+n = int(input('Введите n: '))
+k = int(input('Введите k: '))
+
+if a == 1:
+    print('P  = n!')
+    print(fact(n))
+
+elif a == 2 and n > k:
+    print('fact(n) // (fact(k)*fact(n - k))')
+    print(K(n, k))
+
+elif a == 3:
+    print('fact(n) // (fact(n - k))')
+    print(C_1(n, k))
+
+elif a == 4
+    print('fact(n+k-1) // (fact(k) * fact(n + k - 1 - k))')
+    print(C_2(n, k))
+
+elif a ==5:
+    x = [0] * k
+    print('Введите категории: ')
+    for i in range(k):
+        x[i] = int(input())
+        
+    print()

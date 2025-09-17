@@ -1,0 +1,56 @@
+# алгоритм факториала
+import math
+
+
+def fact(n):
+    result = 1
+    while n > 1:
+        result *= n
+        n -= 1
+    return result
+
+# 1.перестановка +
+def f1(n, k):
+    result = fact(n)
+    return result
+
+# 2.Сочетание +
+def f2(n, k):
+    result = int(fact(n) // (fact(k) * fact(n - k)))
+    return result
+
+# 3.Размещение +
+def f3(n, k):
+    result = int(fact(n) // (fact(n - k)))
+    return result
+
+# 4.Сочетание с повторениями +
+def f4(n, k):
+    result = f2(n + k - 1, k)
+    return result
+
+# 5.Перестановка с повторением +
+def f5(n, k, x):
+    result = int(fact(n))
+    for i in range(len(x)):
+        result //= fact(x[i])
+    return result
+
+# 6.Размещение с повторением
+def f6 (n, k):
+    result = int(n ** k)
+    return result
+
+def f_n2 (a, b):
+    d = math.comb(b, a)
+    p = 1 / d
+    
+print("Задача: Имеется m операторов и n перенумерованных приборов.")
+operators = int(input("Введите количество операторов (op): "))
+devices = int(input("Введите количество перенумерованных приборов (n): "))
+probability = f_n2(operators, devices)
+if isinstance(probability, str):
+    print(probability)
+else:
+    print(f"Приборов среди {devices} при условии {operators} операторов: {probability:.10f}")
+    rs} операторов: {probability:.10f}")
